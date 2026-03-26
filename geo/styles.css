@@ -1,0 +1,142 @@
+body
+{
+    margin: 0;
+}
+
+#map
+{
+    width: 100%;
+    height: 100vh;
+    z-index: 0;
+}
+
+#confirm
+{
+    position: absolute;
+    width: 30%;
+    height: 3vh;
+    background-color: #0996a4;
+    bottom: 5px;
+    transform: translate(-50%, -50%);
+    left: 50%;
+    padding: 1%;
+    color: white;
+    border-radius: 15px;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5vh;
+    font-weight: bold;
+}
+
+#blur
+{
+    top: 0;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    display: flex;
+    backdrop-filter: blur(5px);
+    justify-content: center;
+    align-items: center;
+}
+
+#blur>form
+{
+    width: 60%;
+    height: 40%;
+    background: #123033;
+    border-radius: 20px;
+    padding: 5%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#blur>form>h1
+{
+    color: white;
+    font-size: 3vh;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+}
+
+#blur>form>input
+{
+    border: 0;
+    border-radius: 10px;
+    font-size: 2vh;
+    background: #222222;
+    padding: 2%;
+    margin: 3%;
+    color: white;
+    font-weight: bold;
+}
+
+#switch
+{
+    width: min-content;
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    font-size: 30px;
+    background-color: gray;
+    padding: 5px;
+    border-radius: 20px;
+    z-index: 2;
+}
+
+#selfie
+{
+    top: 0;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: none;
+    object-fit: cover;
+}
+
+.leaflet-marker-icon
+{
+    width: 27.5px !important;
+    height: 45.5px !important;
+    margin-top: -45px !important;
+    margin-left: -15px !important;
+}
+
+.leaflet-popup-content
+{
+    color: white;
+    text-align: center;
+}
+
+.leaflet-popup-content-wrapper, .leaflet-popup-tip
+{
+    background: #123033 !important;
+}
+
+#podium
+{
+    display: none;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    font-size: 2.5vh;
+    font-weight: bold;
+    color: white;
+    font-family: arial;
+    flex-direction: column;
+    align-items: center;
+    background: #222222;
+    padding: 2% 0;
+    border-radius: 10px 10px 0 0;    
+}
+
+#podium > label
+{
+    margin: 1%;
+    text-align: center;
+}

@@ -1,0 +1,19 @@
+<html>
+    <body style="fond-size: 300%">
+        <script>
+            let lat, lng;
+            function loop()
+            {   
+                navigator.geolocation.getCurrentPosition(pos =>
+                {
+                    lat = pos.coords.latitude;
+                    lng = pos.coords.longitude;
+                });
+                document.body.innerHTML += `<br>${lat}, ${lng}`;
+                setTimeout(loop, 1000);
+            }
+
+            loop();
+        </script>
+    </body>
+</html>

@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="fr">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+        <link rel="stylesheet" type="text/css" href="styles.css" />
+        <script type="text/javascript" src="script.js" defer=""></script>
+        <script src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.js"></script>
+    </head>
+    <body>
+        <label id="trouve">Trouve le QR code</label>
+        <div class="viewer" id="viewer">
+            <video id="video" playsinline autoplay muted></video>
+            <canvas id="canvas" class="hidden"></canvas>
+
+            <div class="overlay">
+                <div class="scan-box" aria-hidden="true"></div>
+            </div>
+        </div>
+
+        <div class="controls">
+            <button id="torchBtn" class="ghost">Flash</button>
+        </div>
+        <div id="label"></div>
+    </body>
+</html>

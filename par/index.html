@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+        <link rel="stylesheet" type="text/css" href="styles.css" />
+        <script type="text/javascript" src="script.js" defer=""></script>
+    </head>
+    <body>
+
+        <div id="label"></div>
+
+        <div class="pari-block">
+            <div id="pari-title"></div>
+            <label id="solde" style="font-weight: bold">Solde : K0</label><br>
+            <label id="time" style="font-size: 80%; color: gray"></label>
+            <div class="mise-input">
+                <input type="number" placeholder="Ta mise">
+            </div>
+            <div class="pari-options">
+                <button class="pari-btn yes" onclick="bet(1)">OUI<br><span></span></button>
+                <button class="pari-btn no" onclick="bet(-1)">NON<br><span></span></button>
+            </div>
+            <div class="pari-options">
+                <label>K---</label>
+                <label>K---</label>
+            </div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+        <link rel="stylesheet" type="text/css" href="styles.css" />
+        <script type="text/javascript" src="script.js" defer=""></script>
+    </head>
+    <body>
+
+        <div id="label" style="z-index: 6"></div>
+
+        <div class="container">
+            <header>
+                <div class="logo">
+                    <div>
+                        <div class="title">Krorion Feed</div>
+                        <div class="subtitle">Le feed du <span style="color: #8b0000; font-weight: bold">Kartel</span></div>
+                    </div>
+                </div>
+            </header>
+
+            <div id="label"></div>       
+
+            <main>
+                <h2 id="catalog" style="margin: 0 0 12px 0"></h2>
+                <div class="grid" id="productsGrid" role="list" style="display: none"></div>
+                <div class="pgrid" id="pgrid"></div>
+            </main>
+        </div>
+
+        <div id="comments">
+            <svg onclick="close_comments()" style="width: 100%; height: 7%; position: fixed; left: 0;" width="36" height="36" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none">
+                <path 
+                    d="M19 9L14 14.1599C13.7429 14.4323 13.4329 14.6493 13.089 14.7976C12.7451 14.9459 12.3745 15.0225 12 15.0225C11.6255 15.0225 11.2549 14.9459 10.9109 14.7976C10.567 14.6493 10.2571 14.4323 10 14.1599L5 9"
+                    stroke="#888"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                />
+            </svg>
+
+            <form class="chat-input" onsubmit="return false;">
+                <input type="text" id="messageInput" placeholder="Écrire un message..." />
+                <button type="submit" onclick="send()" id="sendBtn">
+                    <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none">
+                        <path 
+                            d="M20.7639 12H10.0556 M3 8.00003H5.5 M4 12H5.5 M4.5 16H5.5 M9.96153 12.4896L9.07002 15.4486C8.73252 16.5688 8.56376 17.1289 8.70734 17.4633C8.83199 17.7537 9.08656 17.9681 9.39391 18.0415C9.74792 18.1261 10.2711 17.8645 11.3175 17.3413L19.1378 13.4311C20.059 12.9705 20.5197 12.7402 20.6675 12.4285C20.7961 12.1573 20.7961 11.8427 20.6675 11.5715C20.5197 11.2598 20.059 11.0295 19.1378 10.5689L11.3068 6.65342C10.2633 6.13168 9.74156 5.87081 9.38789 5.95502C9.0808 6.02815 8.82627 6.24198 8.70128 6.53184C8.55731 6.86569 8.72427 7.42461 9.05819 8.54246L9.96261 11.5701C10.0137 11.7411 10.0392 11.8266 10.0493 11.9137C10.0583 11.991 10.0582 12.069 10.049 12.1463C10.0387 12.3188 10.013 12.4032 9.96153 12.4896Z"
+                            stroke="#ffffff"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                        />
+                    </svg>
+                </button>
+            </form>
+        </div>
+
+        <div class="login-container" style="display: none;">
+            <form class="login-form" onsubmit="upload(); return false;">
+                <h2>Nouvelle publication</h2>
+ 
+                <input type="file" name="fileInput" id="fileInput" accept="image/*,video/*" required>
+                <input type="text" name="descInput" id="descInput" placeholder="Description" required>
+
+                <button type="submit" class="btn primary">Poster</button>
+            </form>
+        </div>
+
+        <svg style="display: none" id="post" onclick="post()" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" fill="#8b0000">
+            <path d="M16 2C8.268 2 2 8.268 2 16s6.268 14 14 14 14-6.268 14-14S23.732 2 16 2zm1 13h5a1 1 0 1 1 0 2h-5v5a1 1 0 1 1-2 0v-5H9a1 1 0 1 1 0-2h6V9a1 1 0 1 1 2 0v6z"/>
+        </svg>
+
+    </body>
+</html>

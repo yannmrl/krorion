@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+        <link rel="stylesheet" type="text/css" href="styles.css" />
+        <script type="text/javascript" src="script.js" defer=""></script>
+    </head>
+    <body>
+        <audio id="audio" preload="metadata"></audio>
+        <button style="top: 14px; height: 40px; width: 40px" class="back-btn" aria-label="Retour" title="Retour" onclick="_back()">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+                <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z" fill="currentColor"/>
+            </svg>
+        </button>       
+        <div id="app" class="app">
+            <!-- Top search bar -->
+            <header class="topbar">
+                <!--<svg id="backBtn" viewBox="0 0 24 24" style="width: 84px; margin-right: 10px;" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M2.36407 12.9579C1.98463 10.3208 1.79491 9.00229 2.33537 7.87495C2.87583 6.7476 4.02619 6.06234 6.32691 4.69181L7.71175 3.86687C9.80104 2.62229 10.8457 2 12 2C13.1543 2 14.199 2.62229 16.2882 3.86687L17.6731 4.69181C19.9738 6.06234 21.1242 6.7476 21.6646 7.87495C22.2051 9.00229 22.0154 10.3208 21.6359 12.9579L21.3572 14.8952C20.8697 18.2827 20.626 19.9764 19.451 20.9882C18.2759 22 16.5526 22 13.1061 22H10.8939C7.44737 22 5.72409 22 4.54903 20.9882C3.37396 19.9764 3.13025 18.2827 2.64284 14.8952L2.36407 12.9579Z" stroke="#323232" stroke-width="1.5"></path> <path d="M9 16C9.85038 16.6303 10.8846 17 12 17C13.1154 17 14.1496 16.6303 15 16" stroke="#323232" stroke-width="1.5" stroke-linecap="round"></path> </g></svg>-->
+                <div class="search" style="height: 20px">
+                    <svg viewBox="0 0 24 24" style="width: 24px" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M10 2C5.58172 2 2 5.58172 2 10C2 14.4183 5.58172 18 10 18C11.8487 18 13.551 17.3729 14.9056 16.3199L20.2929 21.7071C20.6834 22.0976 21.3166 22.0976 21.7071 21.7071C22.0976 21.3166 22.0976 20.6834 21.7071 20.2929L16.3199 14.9056C17.3729 13.551 18 11.8487 18 10C18 5.58172 14.4183 2 10 2Z" fill="#323232"></path></svg>
+                    <input id="searchInput" type="search" placeholder="Recherche" aria-label="Recherche" />
+                </div>
+            </header>
+
+            <!-- Scrollable playlists -->
+            <main class="content" id="content">
+                <section class="section">           
+                    <h2 class="section-title">Les playlists de la <span style="color: #053a81">Fugitliste</span></h2>
+                    <ul id="playlistList" class="playlist-list" role="list">
+                    </ul>
+                </section>
+            </main>
+
+            <!-- Vue d'une playlist (initialement cachée) -->
+            <main class="content hidden" id="playlistView">
+                <h2 id="playlistTitle" class="section-title"></h2>
+                <ul id="trackList" class="playlist-list"></ul>
+            </main>            
+
+            <!-- Bottom player -->
+            <footer style="margin-bottom: 20%" class="mini-player" id="miniPlayer" aria-live="polite">
+                <div class="player-1">
+                    <div class="cover" id="coverArt" aria-hidden="true">
+                    <!-- SVG placeholder; replaced dynamically -->
+                        <svg viewBox="0 0 100 100" preserveAspectRatio="xMidYMid slice">
+                            <rect width="100" height="100" rx="6" ry="6" fill="#3a0000"/>
+                        </svg>
+                    </div>
+                    <div class="meta">
+                        <div id="trackTitle" class="track-title">Pas de lecture</div>
+                        <div id="trackArtist" class="track-artist">—</div>
+                    </div>
+                </div>
+
+                <div class="player-2">
+                    <button id="prevBtn" class="icon-btn" title="Précédent" aria-label="Précédent">
+                        <svg fill="#fff" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <title>backward</title> <path d="M0 16q0 1.12 0.896 1.664l12 8q0.448 0.32 0.992 0.352t1.056-0.224q0.48-0.288 0.768-0.768t0.288-1.024v-16q0-0.544-0.288-1.024t-0.768-0.736-1.056-0.224-0.992 0.32l-12 8q-0.896 0.608-0.896 1.664zM16 16q0 1.12 0.896 1.664l12 8q0.448 0.32 0.992 0.352t1.056-0.224q0.48-0.288 0.768-0.768t0.288-1.024v-16q0-0.544-0.288-1.024t-0.768-0.736-1.056-0.224-0.992 0.32l-12 8q-0.896 0.608-0.896 1.664z"></path> </g></svg>
+                    </button>
+                    <button id="playBtn" class="big-play" title="Play/Pause" aria-label="Play/Pause">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="#fff"><path d="M5.92 24.096q0 1.088 0.928 1.728 0.512 0.288 1.088 0.288 0.448 0 0.896-0.224l16.16-8.064q0.48-0.256 0.8-0.736t0.288-1.088-0.288-1.056-0.8-0.736l-16.16-8.064q-0.448-0.224-0.896-0.224-0.544 0-1.088 0.288-0.928 0.608-0.928 1.728v16.16z"/></svg>
+                    </button>
+                    <button id="nextBtn" class="icon-btn" title="Suivant" aria-label="Suivant">
+                        <svg fill="#fff" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <title>forward</title> <path d="M0 24q0 0.544 0.288 1.056t0.768 0.736q0.48 0.256 1.056 0.224t0.992-0.32l12-8q0.896-0.608 0.896-1.696t-0.896-1.632l-12-8q-0.448-0.32-0.992-0.352t-1.056 0.224q-0.48 0.256-0.768 0.736t-0.288 1.024v16zM16 24q0 0.544 0.288 1.056t0.768 0.736q0.48 0.256 1.056 0.224t0.992-0.32l12-8q0.896-0.608 0.896-1.696t-0.896-1.632l-12-8q-0.448-0.32-0.992-0.352t-1.056 0.224q-0.48 0.256-0.768 0.736t-0.288 1.024v16z"></path> </g></svg>
+                    </button>
+                </div>
+                <div class="player-3">
+                    <div class="time">
+                        <label>00:00</label>
+                        <label>00:00</label>
+                    </div>
+                    <div class="progress-wrap" aria-hidden="false">
+                        <input id="progress" type="range" min="0" max="100" value="0" />
+                    </div>
+                </div>
+            </footer>
+            <footer class="mini-player menu-footer" id="menuFooter">
+                <svg onclick="showPlaylists()" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M16 16.4286C16 17.8487 14.8807 19 13.5 19C12.1193 19 11 17.8487 11 16.4286C11 15.0084 12.1193 13.8571 13.5 13.8571C14.8807 13.8571 16 15.0084 16 16.4286ZM16 16.4286V10" stroke="#000000" stroke-width="1.5"></path> <path d="M18.675 7.11607L16.9205 7.95824C16.5788 8.12225 16.408 8.20426 16.2845 8.33067C16.1855 8.43211 16.1091 8.55346 16.0605 8.68666C16 8.85265 16 9.04216 16 9.42118C16 10.2976 16 10.7358 16.1911 10.9987C16.3421 11.2066 16.5673 11.3483 16.8201 11.3945C17.1397 11.453 17.5348 11.2634 18.325 10.8841L20.0795 10.0419C20.4212 9.87793 20.592 9.79593 20.7155 9.66952C20.8145 9.56808 20.8909 9.44673 20.9395 9.31353C21 9.14754 21 8.95803 21 8.57901C21 7.70256 21 7.26434 20.8089 7.00144C20.6579 6.79361 20.4327 6.65188 20.1799 6.60565C19.8603 6.54717 19.4652 6.7368 18.675 7.11607Z" stroke="#000000" stroke-width="1.5" stroke-linecap="round"></path> <path d="M9 13H3" stroke="#000000" stroke-width="1.5" stroke-linecap="round"></path> <path d="M8 17H3" stroke="#000000" stroke-width="1.5" stroke-linecap="round"></path> <path d="M3 5H10.4118M15 5H13.4118" stroke="#000000" stroke-width="1.5" stroke-linecap="round"></path> <path d="M13 9L6.82353 9M3 9H4.32353" stroke="#000000" stroke-width="1.5" stroke-linecap="round"></path> </g></svg>
+                <svg onclick="showFavs()" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M4.8824 12.9557L10.5021 19.3071C11.2981 20.2067 12.7019 20.2067 13.4979 19.3071L19.1176 12.9557C20.7905 11.0649 21.6596 8.6871 20.4027 6.41967C18.9505 3.79992 16.2895 3.26448 13.9771 5.02375C13.182 5.62861 12.5294 6.31934 12.2107 6.67771C12.1 6.80224 11.9 6.80224 11.7893 6.67771C11.4706 6.31934 10.818 5.62861 10.0229 5.02375C7.71053 3.26448 5.04945 3.79992 3.59728 6.41967C2.3404 8.6871 3.20947 11.0649 4.8824 12.9557Z" stroke="#000000" stroke-width="2" stroke-linejoin="round"></path> </g></svg>
+                <svg onclick="showQueue()" viewBox="0 0 24 24" role="img" xmlns="http://www.w3.org/2000/svg" aria-labelledby="justifyIconTitle" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none" color="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <title id="justifyIconTitle">Justify</title> <path d="M6 10L18 10M6 6L18 6M6 14L18 14M6 18L18 18"></path> </g></svg>
+            </footer>
+        </div>
+
+        <div id="overlay">
+            <div id="popup">
+                <p id="popup-question">Es-tu sûr de vouloir quitter <span style="color: #8b0000">Krorion Music ?</span></p>
+                <div class="buttons">
+                    <button id="popup-yes" onclick="back();">Oui</button>
+                    <button id="popup-no" onclick="document.getElementById('overlay').style.display = 'none'">Non</button>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

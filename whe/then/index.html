@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="fr">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width,initial-scale=1" />
+        <link rel="stylesheet" type="text/css" href="styles.css" />
+        <script type="text/javascript" src="script.js" defer=""></script>
+    </head>
+    <body onload="load_whe_then()">
+        <div class="wrap">
+            <div class="card" role="application" aria-label="Roulette des lots">
+                <div class="pointer" aria-hidden="true"></div>
+                <canvas id="wheel" width="720" height="720" aria-hidden="false"></canvas>
+
+                <div class="controls">
+                    <button id="spinBtn" type="button">SPIN</button>
+                </div>
+
+                <div class="result" id="result" aria-live="polite">
+                    <img id="resImg" src="" alt="" style="display:none">
+                    <div class="txt" id="resTxt">Bravo ! Tu es le premier à avoir trouvé le QR code. Fais tourner la roue pour obtenir ta récompense</div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

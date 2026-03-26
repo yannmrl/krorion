@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+        <link rel="stylesheet" type="text/css" href="styles.css" />
+
+        <script src="https://cdn.jsdelivr.net/npm/livekit-client/dist/livekit-client.umd.min.js"></script>
+
+        <script type="text/javascript" src="script.js" defer=""></script>
+        <script type="text/javascript" src="mus/script.js" defer=""></script>        
+        <script type="text/javascript" src="jungle.js" defer=""></script>     
+                
+        <script src="https://cdn.jsdelivr.net/npm/jsmediatags@3.9.7/dist/jsmediatags.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/levenshtein/1.0.5/levenshtein.min.js"></script>
+
+        <link rel="icon" type="image/png" href="assets/kro/favicon-96x96.png" sizes="96x96" />
+        <!--<link rel="icon" type="image/svg+xml" href="assets/kro/favicon.svg" />-->
+        <link rel="shortcut icon" href="assets/kro/favicon.ico" />
+        <link rel="apple-touch-icon" sizes="180x180" href="assets/kro/apple-touch-icon.png" />
+        <link rel="apple-touch-icon" sizes="57x57" href="assets/kro/apple-icon-57x57.png">
+        <link rel="apple-touch-icon" sizes="60x60" href="assets/kro/apple-icon-60x60.png">
+        <link rel="apple-touch-icon" sizes="72x72" href="assets/kro/apple-icon-72x72.png">
+        <link rel="apple-touch-icon" sizes="76x76" href="assets/kro/apple-icon-76x76.png">
+        <link rel="apple-touch-icon" sizes="114x114" href="assets/kro/apple-icon-114x114.png">
+        <link rel="apple-touch-icon" sizes="120x120" href="assets/kro/apple-icon-120x120.png">
+        <link rel="apple-touch-icon" sizes="144x144" href="assets/kro/apple-icon-144x144.png">
+        <link rel="apple-touch-icon" sizes="152x152" href="assets/kro/apple-icon-152x152.png">
+        <link rel="apple-touch-icon" sizes="180x180" href="assets/kro/apple-icon-180x180.png">
+        <link rel="icon" type="image/png" sizes="192x192"  href="assets/kro/kro-192x192.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="assets/kro/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="96x96" href="assets/kro/favicon-96x96.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="assets/kro/favicon-16x16.png">
+
+        <link rel="manifest" href="manifest.json">
+        <meta name="msapplication-TileColor" content="#0b0c10">
+        <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+        <meta name="theme-color" content="#0b0c10">  
+
+        <meta name="mobile-web-app-capable" content="yes">
+        <!-- iOS support -->
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">        
+
+        <title>Krorion</title>
+    </head>
+    <body onload="load()">
+        <div id="label" style="z-index: 6"></div>
+        <div id="main-loader">
+            <img src="assets/kro/kro-256x256.png" style="width: 70%">
+        </div>
+        <div id="loaderDiv" style="display: none">
+            <!--<div class="loader"></div>-->
+            <img>
+        </div>
+        <button id="back" style="display: none; top: 14px; height: 40px; width: 40px" class="back-btn" aria-label="Retour" title="Retour" onclick="back()">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+                <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z" fill="currentColor"/>
+            </svg>
+        </button>    
+        <div id="main">
+
+            <div id="installDiv" class="bigDiv" style="z-index: 3; display: none">Installer</div>
+            <div id="notifyDiv" class="bigDiv" style="z-index: 2; display: none" onclick="subscribe()">Activer les notifications</div>
+
+            <div class="tv-menu">
+                <a onclick="redirect('mes')" id="notifBtn" class="notif-btn" aria-label="Notifications" aria-live="polite">
+                    <svg viewBox="0 0 56 56" xmlns="http://www.w3.org/2000/svg" fill="#ff4d4d"><defs><filter id="a" x="-20%" y="-20%" width="140%" height="140%" filterUnits="userSpaceOnUse"><feOffset dy="1" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset><feGaussianBlur stdDeviation="4" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur><feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.10 0" /><feMerge><feMergeNode /><feMergeNode in="SourceGraphic" /></feMerge></filter></defs><path fill-rule="evenodd" filter="url(#a)" d="M28 38c1.105 0 2-.895 2-2h-4c0 1.105.895 2 2 2zm0-20c3.441 0 6.882 3.529 7 6.697v3.636s2 1.167 2 2.672c0 2.043-1.34 2.995-2.993 2.995h-12.015c-1.64 0-2.993-1-2.993-2.995v-.509c0-.552.385-1.22.86-1.497l1.14-.665v-3.636c.118-3.168 3.559-6.697 7-6.697zm0 2c-2.277 0-4.92 2.589-5 4.697v4.785l-.992.579-1.14.665c.139-.081.132-.07.132-.231v.509c0 .729.289.995.993.995h12.015c.735 0 .993-.235.993-.995 0-.002-.115-.198-.385-.457-.244-.234-.498-.414-.623-.487l-.992-.579v-1.149l.001-3.562c-.081-2.183-2.724-4.771-5.001-4.771z" /></svg>
+                    <span class="notif-badge" aria-hidden="true"></span>
+                </a>     
+
+                <a id="infoBtn" class="notif-btn" style="left: 0" aria-label="Informations" aria-live="polite" onclick="showPopup()">
+                    <svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg" fill="#ff4d4d"><defs><filter id="a" x="-20%" y="-20%" width="140%" height="140%" filterUnits="userSpaceOnUse"><feOffset dy="1" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset><feGaussianBlur stdDeviation="4" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur><feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.10 0" /><feMerge><feMergeNode /><feMergeNode in="SourceGraphic" /></feMerge></filter></defs><path fill-rule="evenodd" filter="url(#a)" d="M20 20.991c0-1.099.893-1.991 1.995-1.991h14.01c1.102 0 1.995.898 1.995 1.991v16.018c0 1.099-.893 1.991-1.995 1.991h-14.01c-1.102 0-1.995-.898-1.995-1.991v-16.018zm1.995 15.008c0 .553.45 1.001 1.007 1.001h11.991c.556 0 1.007-.445 1.007-1.001v-14.006c0-.553-.45-1.001-1.007-1.001h-11.986c-.556 0-1.007.445-1.007 1.001l-.004 14.006zm2.005-10.999c0-.552.443-1 1.009-1h1.981c.557 0 1.009.444 1.009 1 0 .552-.443 1-1.009 1h-1.981c-.557 0-1.009-.444-1.009-1zm0 4c0-.552.456-1 .995-1h8.009c.55 0 .995.444.995 1 0 .552-.456 1-.995 1h-8.009c-.55 0-.995-.444-.995-1zm0 4c0-.552.456-1 .995-1h8.009c.55 0 .995.444.995 1 0 .552-.456 1-.995 1h-8.009c-.55 0-.995-.444-.995-1z" /></svg>
+                </a>
+
+                <img src="assets/kro/kro-256x256.png" width="96">
+
+                <h1 style="margin-bottom: 0">KRORION</h1>
+                <h3 style="margin-top: 0; margin-bottom: 25px; color: #faa">par le <span style="color: #8b0000">Kartel Red</span></h3>
+                <div class="menu-grid">
+                    <div onclick="redirect('sho')" id="sho" class="menu-item"><img name="sho" src="assets/menu/sho-min.png"><a>Boutique</a></div>
+                    <div onclick="redirect('cas')" id="cas" class="menu-item"><img name="cas" src="assets/menu/cas-min.png"><a>Casino</a></div>
+                    <div onclick="redirect('par')" id="par" class="menu-item"><img name="par" src="assets/menu/par-min.png"><a>Paris</a></div>
+                    <a href="tel:+33123456789" id="all" class="menu-item"><img name="" src="assets/menu/all-min.png">Allo KR</a>
+                    <div onclick="redirect('bou')" id="bou" class="menu-item"><img name="bou" src="assets/menu/bou-min.png"><a>Boussole</a></div>
+                    <div onclick="redirect('bid')" id="bid" class="menu-item"><img name="bid" src="assets/menu/bid-min.png"><a>Enchères</a></div>
+                    <div onclick="redirect('wan')" id="wan" class="menu-item"><img name="wan" src="assets/menu/wan-min.png"><a>Wanted</a></div>
+                    <div onclick="redirect('mis')" id="mis" class="menu-item"><img name="mis" src="assets/menu/mis-min.png"><a>Missions</a></div>
+                    <div onclick="redirect('ins')" id="ins" class="menu-item"><img name="ins" src="assets/menu/ins-min.png"><a>Feed</a></div>        
+                    <div onclick="redirect('cla2')" id="cla" class="menu-item"><img name="cla" src="assets/menu/cla-min.png"><a>Classement</a></div>            
+                    <div onclick="redirect('twi')" id="twi" class="menu-item"><img name="twi" src="assets/menu/twi-min.png"><a>Krorion Live</a></div>
+                    <div onclick="redirect('mus')" id="mus" class="menu-item"><img name="mus" src="assets/menu/mus-min.png"><a>Krorion Music</a></div>
+                    <div onclick="redirect('vid')" id="vid" class="menu-item"><img name="vid" src="assets/menu/vid-min.png"><a>Krorion TV</a></div>
+                    <div onclick="redirect('rec')" id="rec" class="menu-item"><img name="rec" src="assets/menu/rec-min.png"><a>Récompenses</a></div>
+                    <div onclick="redirect('dep')" id="dep" class="menu-item"><img name="dep" src="assets/menu/dep-min.png"><a>Dépôt</a></div>
+
+                    <div onclick="redirect('lab')" id="bid" class="menu-item"><img name="bid" src="assets/menu/bid-min.png"><a>Katarun</a></div>
+                    <div onclick="redirect('geo')" id="wan" class="menu-item"><img name="wan" src="assets/menu/wan-min.png"><a>Guess The Fugitif</a></div>
+                    <div onclick="redirect('cha')" id="mis" class="menu-item"><img name="mis" src="assets/menu/mis-min.png"><a>QR Hunter</a></div>
+                </div>
+                <a style="margin: 10% 0; color: #9E1B00;" onclick="disconnect()">Déconnexion</a>
+            </div>
+            <div class="login-container" style="display: none; z-index: 1;">
+                <form class="login-form" onsubmit="log(); return false;">
+                    <h2>Connexion</h2>
+                    
+                    <label for="username">Identifiant Aurion</label>
+                    <input type="text" id="username" placeholder="Identifiant Aurion" required autocomplete="new-user">
+
+                    <label for="password">Mot de passe Krorion</label>
+                    <input type="password" id="password" placeholder="Mot de passe Krorion" required autocomplete="new-password">
+
+                    <button type="submit" class="btn primary">Se connecter</button>
+                </form>
+            </div>
+
+            <div class="blur" style="display: none;"></div>
+
+            <div id="popup-overlay">
+                <div id="popup-box">
+                    <h2 style="margin-bottom: 0">KRORION</h2>
+                    <h3 style="margin-top: 0">par le <span style="color: #8b0000; font-weight: bold">Kartel Red</span></h3>
+                    <p>
+                        Le <span style="color: #8b0000; font-weight: bold">Kartel Red</span>
+                        te pr&eacute;sente <span style="color: #f44; font-weight: bold">KRORION</span>,
+                        une plateforme qui t'offrira du divertissement et des r&eacute;compenses
+                        tout au long des campagnes.
+                    </p>
+                    <p>Profite bien de ces campagnes et <span style="color: #8b0000; font-weight: bold">vote KR !</span></p>
+                    <p>Le <span style="color: #8b0000; font-weight: bold">Kartel Red</span></p><br>
+                    <p>
+                        Développement et conception : <br><a style="color: #f44;" href="https://instagram.com/ian.mrl">Yann</a> <br><br>
+                        Illustrations et icônes : <br><a style="color: #f44;" href="https://instagram.com/mael_rder">Maël</a>
+                    </p>
+                    <button id="popup-close" onclick="closePopup()">Fermer</button>
+                </div>
+            </div>
+        </div>
+        <div id="music" style="display: none; top: 0; position: fixed; width: 100%;">
+            <audio id="audio" preload="metadata"></audio>
+            <div id="app" class="app">
+                <!-- Top search bar -->
+                <header class="topbar">
+                    <!--<svg id="backBtn" viewBox="0 0 24 24" style="width: 84px; margin-right: 10px;" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M2.36407 12.9579C1.98463 10.3208 1.79491 9.00229 2.33537 7.87495C2.87583 6.7476 4.02619 6.06234 6.32691 4.69181L7.71175 3.86687C9.80104 2.62229 10.8457 2 12 2C13.1543 2 14.199 2.62229 16.2882 3.86687L17.6731 4.69181C19.9738 6.06234 21.1242 6.7476 21.6646 7.87495C22.2051 9.00229 22.0154 10.3208 21.6359 12.9579L21.3572 14.8952C20.8697 18.2827 20.626 19.9764 19.451 20.9882C18.2759 22 16.5526 22 13.1061 22H10.8939C7.44737 22 5.72409 22 4.54903 20.9882C3.37396 19.9764 3.13025 18.2827 2.64284 14.8952L2.36407 12.9579Z" stroke="#323232" stroke-width="1.5"></path> <path d="M9 16C9.85038 16.6303 10.8846 17 12 17C13.1154 17 14.1496 16.6303 15 16" stroke="#323232" stroke-width="1.5" stroke-linecap="round"></path> </g></svg>-->
+                    <div class="search" style="height: 20px">
+                        <svg viewBox="0 0 24 24" style="width: 24px" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M10 2C5.58172 2 2 5.58172 2 10C2 14.4183 5.58172 18 10 18C11.8487 18 13.551 17.3729 14.9056 16.3199L20.2929 21.7071C20.6834 22.0976 21.3166 22.0976 21.7071 21.7071C22.0976 21.3166 22.0976 20.6834 21.7071 20.2929L16.3199 14.9056C17.3729 13.551 18 11.8487 18 10C18 5.58172 14.4183 2 10 2Z" fill="#323232"></path></svg>
+                        <input id="searchInput" type="search" placeholder="Recherche" aria-label="Recherche" />
+                    </div>
+                </header>
+
+                <!-- Scrollable playlists -->
+                <main class="content" id="content">
+                    <!--<section class="section">-->
+                        <h2 class="section-title">Les playlists du <span style="color: #8b0000">Kartel Red</span></h2>
+                        <ul id="playlistList" class="playlist-list" role="list">
+                        </ul>
+                    <!--</section>-->
+                </main>
+
+                <!-- Vue d'une playlist (initialement cachée) -->
+                <main class="content hidden" id="playlistView">
+                    <h2 id="playlistTitle" class="section-title"></h2>
+                    <ul id="trackList" class="playlist-list"></ul>
+                </main>            
+
+                <!-- Bottom player -->
+                <footer style="margin-bottom: 68px;" class="mini-player" id="miniPlayer" aria-live="polite">
+                    <div class="player-1">
+                        <div class="cover" id="coverArt" aria-hidden="true">
+                        <!-- SVG placeholder; replaced dynamically -->
+                            <svg viewBox="0 0 100 100" preserveAspectRatio="xMidYMid slice">
+                                <rect width="100" height="100" rx="6" ry="6" fill="#3a0000"/>
+                            </svg>
+                        </div>
+                        <div class="meta">
+                            <div id="trackTitle" class="track-title">Pas de lecture</div>
+                            <div id="trackArtist" class="track-artist">—</div>
+                        </div>
+                    </div>
+
+                    <div class="player-2">
+                        <button style="display: none;" class="icon-btn">
+                        </button>
+                        <button id="prevBtn" class="icon-btn" title="Précédent" aria-label="Précédent">
+                            <svg fill="#fff" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <title>backward</title> <path d="M0 16q0 1.12 0.896 1.664l12 8q0.448 0.32 0.992 0.352t1.056-0.224q0.48-0.288 0.768-0.768t0.288-1.024v-16q0-0.544-0.288-1.024t-0.768-0.736-1.056-0.224-0.992 0.32l-12 8q-0.896 0.608-0.896 1.664zM16 16q0 1.12 0.896 1.664l12 8q0.448 0.32 0.992 0.352t1.056-0.224q0.48-0.288 0.768-0.768t0.288-1.024v-16q0-0.544-0.288-1.024t-0.768-0.736-1.056-0.224-0.992 0.32l-12 8q-0.896 0.608-0.896 1.664z"></path> </g></svg>
+                        </button>
+                        <button id="playBtn" class="big-play" title="Play/Pause" aria-label="Play/Pause">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="#fff"><path d="M5.92 24.096q0 1.088 0.928 1.728 0.512 0.288 1.088 0.288 0.448 0 0.896-0.224l16.16-8.064q0.48-0.256 0.8-0.736t0.288-1.088-0.288-1.056-0.8-0.736l-16.16-8.064q-0.448-0.224-0.896-0.224-0.544 0-1.088 0.288-0.928 0.608-0.928 1.728v16.16z"/></svg>
+                        </button>
+                        <button id="nextBtn" class="icon-btn" title="Suivant" aria-label="Suivant">
+                            <svg fill="#fff" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <title>forward</title> <path d="M0 24q0 0.544 0.288 1.056t0.768 0.736q0.48 0.256 1.056 0.224t0.992-0.32l12-8q0.896-0.608 0.896-1.696t-0.896-1.632l-12-8q-0.448-0.32-0.992-0.352t-1.056 0.224q-0.48 0.256-0.768 0.736t-0.288 1.024v16zM16 24q0 0.544 0.288 1.056t0.768 0.736q0.48 0.256 1.056 0.224t0.992-0.32l12-8q0.896-0.608 0.896-1.696t-0.896-1.632l-12-8q-0.448-0.32-0.992-0.352t-1.056 0.224q-0.48 0.256-0.768 0.736t-0.288 1.024v16z"></path> </g></svg>
+                        </button>
+                        <button style="display: none;" id="like" class="icon-btn">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M4.8824 12.9557L10.5021 19.3071C11.2981 20.2067 12.7019 20.2067 13.4979 19.3071L19.1176 12.9557C20.7905 11.0649 21.6596 8.6871 20.4027 6.41967C18.9505 3.79992 16.2895 3.26448 13.9771 5.02375C13.182 5.62861 12.5294 6.31934 12.2107 6.67771C12.1 6.80224 11.9 6.80224 11.7893 6.67771C11.4706 6.31934 10.818 5.62861 10.0229 5.02375C7.71053 3.26448 5.04945 3.79992 3.59728 6.41967C2.3404 8.6871 3.20947 11.0649 4.8824 12.9557Z" stroke="#000000" stroke-width="2" stroke-linejoin="round"></path> </g></svg>
+                        </button>
+                    </div>
+                    <div class="player-3">
+                        <div class="time">
+                            <label>00:00</label>
+                            <label>00:00</label>
+                        </div>
+                        <div class="progress-wrap" aria-hidden="false">
+                            <input id="progress" type="range" min="0" max="100" value="0" />
+                        </div>
+                    </div>
+                </footer>
+                <footer style="height: 36px " class="mini-player menu-footer" id="menuFooter">
+                    <svg onclick="showPlaylists()" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M16 16.4286C16 17.8487 14.8807 19 13.5 19C12.1193 19 11 17.8487 11 16.4286C11 15.0084 12.1193 13.8571 13.5 13.8571C14.8807 13.8571 16 15.0084 16 16.4286ZM16 16.4286V10" stroke="#000000" stroke-width="1.5"></path> <path d="M18.675 7.11607L16.9205 7.95824C16.5788 8.12225 16.408 8.20426 16.2845 8.33067C16.1855 8.43211 16.1091 8.55346 16.0605 8.68666C16 8.85265 16 9.04216 16 9.42118C16 10.2976 16 10.7358 16.1911 10.9987C16.3421 11.2066 16.5673 11.3483 16.8201 11.3945C17.1397 11.453 17.5348 11.2634 18.325 10.8841L20.0795 10.0419C20.4212 9.87793 20.592 9.79593 20.7155 9.66952C20.8145 9.56808 20.8909 9.44673 20.9395 9.31353C21 9.14754 21 8.95803 21 8.57901C21 7.70256 21 7.26434 20.8089 7.00144C20.6579 6.79361 20.4327 6.65188 20.1799 6.60565C19.8603 6.54717 19.4652 6.7368 18.675 7.11607Z" stroke="#000000" stroke-width="1.5" stroke-linecap="round"></path> <path d="M9 13H3" stroke="#000000" stroke-width="1.5" stroke-linecap="round"></path> <path d="M8 17H3" stroke="#000000" stroke-width="1.5" stroke-linecap="round"></path> <path d="M3 5H10.4118M15 5H13.4118" stroke="#000000" stroke-width="1.5" stroke-linecap="round"></path> <path d="M13 9L6.82353 9M3 9H4.32353" stroke="#000000" stroke-width="1.5" stroke-linecap="round"></path> </g></svg>
+                    <svg onclick="showFavs()" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M4.8824 12.9557L10.5021 19.3071C11.2981 20.2067 12.7019 20.2067 13.4979 19.3071L19.1176 12.9557C20.7905 11.0649 21.6596 8.6871 20.4027 6.41967C18.9505 3.79992 16.2895 3.26448 13.9771 5.02375C13.182 5.62861 12.5294 6.31934 12.2107 6.67771C12.1 6.80224 11.9 6.80224 11.7893 6.67771C11.4706 6.31934 10.818 5.62861 10.0229 5.02375C7.71053 3.26448 5.04945 3.79992 3.59728 6.41967C2.3404 8.6871 3.20947 11.0649 4.8824 12.9557Z" stroke="#000000" stroke-width="2" stroke-linejoin="round"></path> </g></svg>
+                    <svg onclick="showQueue()" viewBox="0 0 24 24" role="img" xmlns="http://www.w3.org/2000/svg" aria-labelledby="justifyIconTitle" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none" color="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <title id="justifyIconTitle">Justify</title> <path d="M6 10L18 10M6 6L18 6M6 14L18 14M6 18L18 18"></path> </g></svg>
+                </footer>
+            </div>
+        </div>
+
+        <div id="live" style="display: none">
+            <video id="remoteVideo" autoplay playsinline></video>
+            <!--<video id="guestStream" autoplay playsinline></video>-->
+
+            <label id="liveTitle"></label>
+
+            <div id="donationGoal" onclick="showCagnotte()">K0</div>
+
+            <div id="people" onclick="displayViewers()">
+                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 24 24" width="24" height="24" fill="#ffffff">
+                    <path d="M.221 16.268a15.064 15.064 0 0 0 1.789 1.9C2.008 18.111 2 18.057 2 18a5.029 5.029 0 0 1 3.233-4.678 1 1 0 0 0 .175-1.784A2.968 2.968 0 0 1 4 9a2.988 2.988 0 0 1 5.022-2.2 5.951 5.951 0 0 1 2.022-.715 4.994 4.994 0 1 0-7.913 6.085 7.07 7.07 0 0 0-2.91 4.098zM23.779 16.268a7.07 7.07 0 0 0-2.91-4.1 4.994 4.994 0 1 0-7.913-6.086 5.949 5.949 0 0 1 2.022.715 2.993 2.993 0 1 1 3.614 4.74 1 1 0 0 0 .175 1.784A5.029 5.029 0 0 1 22 18c0 .057-.008.111-.01.167a15.065 15.065 0 0 0 1.789-1.899z"/>
+                    <path d="M18.954 20.284a7.051 7.051 0 0 0-3.085-5.114A4.956 4.956 0 0 0 17 12a5 5 0 1 0-8.869 3.17 7.051 7.051 0 0 0-3.085 5.114 14.923 14.923 0 0 0 1.968.849C7.012 21.088 7 21.046 7 21a5.031 5.031 0 0 1 3.233-4.678 1 1 0 0 0 .175-1.785A2.964 2.964 0 0 1 9 12a3 3 0 1 1 6 0 2.964 2.964 0 0 1-1.408 2.537 1 1 0 0 0 .175 1.785A5.031 5.031 0 0 1 17 21c0 .046-.012.088-.013.133a14.919 14.919 0 0 0 1.967-.849z"/>
+                </svg>
+                <label>0</label>
+            </div>
+
+            <svg id="switch" style="display: none" onclick="switchCamera(localStream)" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                    d="M3.5 13L3.29592 12.0476C2.62895 8.93509 5.00172 6 8.18494 6H19 M19 6L16 9 M19 6L16 3 M20.5 11L20.7041 11.9524C21.3711 15.0649 18.9983 18 15.8151 18H5 M5 18L8 15 M5 18L8 21"
+                    stroke="#000000"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                />
+            </svg>
+
+            <div class="chat">
+                <div id="chatMessages">
+                </div>
+                <form class="chat-input" onsubmit="return false;">
+                    <input type="text" id="messageInput" placeholder="Écrire un message..." />
+                    <button type="submit" onclick="send()" id="sendBtn">
+                        <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none">
+                            <path 
+                                d="M20.7639 12H10.0556 M3 8.00003H5.5 M4 12H5.5 M4.5 16H5.5 M9.96153 12.4896L9.07002 15.4486C8.73252 16.5688 8.56376 17.1289 8.70734 17.4633C8.83199 17.7537 9.08656 17.9681 9.39391 18.0415C9.74792 18.1261 10.2711 17.8645 11.3175 17.3413L19.1378 13.4311C20.059 12.9705 20.5197 12.7402 20.6675 12.4285C20.7961 12.1573 20.7961 11.8427 20.6675 11.5715C20.5197 11.2598 20.059 11.0295 19.1378 10.5689L11.3068 6.65342C10.2633 6.13168 9.74156 5.87081 9.38789 5.95502C9.0808 6.02815 8.82627 6.24198 8.70128 6.53184C8.55731 6.86569 8.72427 7.42461 9.05819 8.54246L9.96261 11.5701C10.0137 11.7411 10.0392 11.8266 10.0493 11.9137C10.0583 11.991 10.0582 12.069 10.049 12.1463C10.0387 12.3188 10.013 12.4032 9.96153 12.4896Z"
+                                stroke="#ffffff"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                            />
+                        </svg>
+                    </button>
+                    <button onclick="showDonationMenu()">
+                        <svg style="fill: none" width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path 
+                                d="M12 7V20M12 7H8.46429C7.94332 7 7.4437 6.78929 7.07533 6.41421C6.70695 6.03914 6.5 5.53043 6.5 5C6.5 4.46957 6.70695 3.96086 7.07533 3.58579C7.4437 3.21071 7.94332 3 8.46429 3C11.2143 3 12 7 12 7ZM12 7H15.5357C16.0567 7 16.5563 6.78929 16.9247 6.41421C17.293 6.03914 17.5 5.53043 17.5 5C17.5 4.46957 17.293 3.96086 16.9247 3.58579C16.5563 3.21071 16.0567 3 15.5357 3C12.7857 3 12 7 12 7ZM5 12H19V17.8C19 18.9201 19 19.4802 18.782 19.908C18.5903 20.2843 18.2843 20.5903 17.908 20.782C17.4802 21 16.9201 21 15.8 21H8.2C7.07989 21 6.51984 21 6.09202 20.782C5.71569 20.5903 5.40973 20.2843 5.21799 19.908C5 19.4802 5 18.9201 5 17.8V12ZM4.6 12H19.4C19.9601 12 20.2401 12 20.454 11.891C20.6422 11.7951 20.7951 11.6422 20.891 11.454C21 11.2401 21 10.9601 21 10.4V8.6C21 8.03995 21 7.75992 20.891 7.54601C20.7951 7.35785 20.6422 7.20487 20.454 7.10899C20.2401 7 19.9601 7 19.4 7H4.6C4.03995 7 3.75992 7 3.54601 7.10899C3.35785 7.20487 3.20487 7.35785 3.10899 7.54601C3 7.75992 3 8.03995 3 8.6V10.4C3 10.9601 3 11.2401 3.10899 11.454C3.20487 11.6422 3.35785 11.7951 3.54601 11.891C3.75992 12 4.03995 12 4.6 12Z"
+                                stroke="white"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                            />
+                        </svg>
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <div id="overlay">
+            <form id="popup" onsubmit="return false">
+                <p id="popup-question">Veux-tu lancer un live ?</p>
+                <input id="liveTitleInput" type="text" placeholder="Titre du Live" required>
+
+                <div class="check" id="check">
+                    <label>Prévenir du début du live par notification ?</label>
+                    <input type="checkbox">
+                </div>
+
+                <div class="check" id="check0">
+                    <label>Live anonyme ?</label>
+                    <input type="checkbox">
+                </div>
+
+               <div style="display: none" class="check" id="check1">
+                    <label>Partager le son système ?</label>
+                    <input type="checkbox" onclick="radio(1)">
+                </div>
+
+                <div class="check" id="check2">
+                    <label>Partager l'écran ?</label>
+                    <input type="checkbox" onclick="radio(2)">
+                </div>
+
+                <div class="check" id="check3" style="display: none">
+                    <label>Partager la caméra ?</label>
+                    <input type="checkbox" onclick="radio(3)">
+                </div>
+
+                <div class="check" id="check4">
+                    <label>Pitch down ?</label>
+                    <input type="checkbox">
+                </div>                
+
+                <div class="buttons">
+                    <button type="submit" id="popup-yes" onclick="startStreaming()">Oui</button>
+                    <button id="popup-no" onclick="closeLive(); ws.close()">Non</button>
+                </div>
+            </form>
+        </div>
+
+        <div id="viewerList"></div>
+
+        <div id="donation-overlay" style="display: none">
+            <div id="donation">
+                <label>Fais un don</label>
+                <label>Ton solde : K--</label>
+                <form onsubmit="return false">
+                    <div id="donationAmountDiv">
+                        <span>K</span>
+                        <input id="donationAmount" type="number" placeholder="Montant">
+                    </div>
+                    <label>Message (optionnel)</label>
+                    <textarea id="donationMessage" name="message" rows="3" placeholder="Ton message sera lu automatiquement si tu donnes plus de K20"></textarea>
+                    <div id="donationActions">
+                        <button type="submit" onclick="donate()" style="background: #f44">Donner</button>
+                        <button onclick="closeDonationMenu()" style="background: #333">Annuler</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </body>
+</html>

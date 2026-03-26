@@ -1,0 +1,32 @@
+ALGO 2025
+Faire un catalogue de ressorts
+
+Un ressort est caractérisé par:
+    - sa référence ref de 17 caractères
+    - sa longueur L de type float
+    - sa raideur K de type float
+    - son diamètre dext de type float
+
+A. Représentation
+
+a. Donner la struct Ressort et créer un synonyme
+b. Ecrire une fonction creerRessort
+
+B. Tableau statique, gestion du catalogue
+
+a. Ecrire une fonction ajoutRessort
+b. Fonction itérative de recherche chercheRessort
+c. Fonction récursive d'affiche afficheRessort
+
+C. LIFO statique
+
+a. Donner une struct LIFO pour ressorts et un synonyme
+b. Fonction ajoutRessortLIFO
+c. Fonction recursive chercheRessortLIFO
+d. Fonction itérative afficheRessortLIFO
+
+D. Accès direct
+
+a. Fonction ecrireRessorts qui ecrit une LIFO de ressorts dans un fichier binaire
+b. Fonction lireRessorts qui lit un fichier binaire et rempli la LIFO
+c. Ecrire une fonction main qui utilise ces fonctions

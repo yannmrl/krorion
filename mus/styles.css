@@ -1,0 +1,402 @@
+:root
+{
+    --bg: #120303;
+    --panel: #200606;
+    --muted: #9b7b7b;
+    --accent: #b22222;
+    --accent-2: #8b0000;
+    --glass: rgba(255,255,255,0.03);
+    --radius: 12px;
+    --radius-sm: 8px;
+    --gap: 14px;
+    font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+}
+
+*
+{
+    box-sizing: border- box;
+}
+
+html, body, #app
+{
+    height: 100%;
+}
+
+body
+{
+    margin: 0;
+    background: linear-gradient(180deg,var(--bg),#0b0000 60%);
+    color: #fff;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    display: flex;
+    align-items: stretch;
+    justify-content: center;
+}
+
+.app
+{
+    width: 100%;
+    max-width: 900px;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.topbar
+{
+    padding: 14px;
+    background: linear-gradient(180deg, rgba(0,0,0,0.25), transparent);
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    display: flex;
+    padding-left: 60px;
+}
+
+.search
+{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--panel);
+    border-radius: 999px;
+    padding: 10px 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.02);
+}
+
+.search .icon
+{
+    width: 18px;
+    height: 18px;
+    color: var(--muted);
+    opacity: 0.9;
+}
+
+.search input
+{
+    border: 0;
+    background: transparent;
+    color: #fff;
+    outline: none;
+    font-size: 16px;
+    width: 100%;
+}
+
+.content
+{
+    padding: 12px;
+    overflow: auto;
+    flex: 1 1 auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.section-title
+{
+    margin: 10px 4px;
+    color: var(--muted);
+    font-weight: 600;
+    font-size: 13px;
+}
+
+.playlist-list
+{
+    list-style: none;
+    padding: 0;
+    margin-top: 8px;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+}
+
+.playlist-item
+{
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    background: linear-gradient(180deg, rgba(255,255,255,0.02), transparent);
+    padding: 10px;
+    border-radius: var(--radius-sm);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.5);
+    transition: transform .12s ease, box-shadow .12s ease;
+}
+
+.playlist-item:hover
+{
+    /*transform: translateY(-4px);*/
+    box-shadow: 0 6px 16px rgba(0,0,0,0.6);
+    cursor: pointer;
+}
+
+.thumb
+{
+    width: 64px;
+    height: 64px;
+    object-fit: cover;
+    flex: 0 0 64px;
+    overflow: hidden;
+    background: linear-gradient(135deg,var(--accent-2),#300);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-weight: 700;
+}
+
+.thumb-img
+{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.play-info{flex:1; min-width:0}
+.pl-title{font-size:15px;font-weight:700; margin-bottom:4px;}
+.pl-sub{font-size:13px;color:var(--muted);}
+
+.item-play
+{
+    background: transparent;
+    border: 0;
+    color: var(--muted);
+    font-weight: 700;
+    padding: 8px 10px;
+    border-radius: 8px;
+}
+
+.mini-player
+{
+    position: fixed;
+    left: 12px;
+    right: 12px;
+    bottom: 12px;
+    background: linear-gradient(180deg, rgba(139,0,0,0.95), rgba(178,34,34,0.95));
+    border-radius: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.6);
+    /*gap: 12px;*/
+    z-index: 30;
+    backdrop-filter: blur(6px);
+    flex-direction: column;
+}
+
+.player-1
+{
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    min-width: 0;
+    max-width: 90%;
+}
+
+.cover
+{
+    width: 52px;
+    height: 52px;
+    border-radius: 8px;
+    overflow: hidden;
+    flex: 0 0 52px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.meta
+{
+    min-width: 0;
+    max-width: 90%;
+}
+
+.track-title
+{
+    font-weight: 700;
+    font-size: 14px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.track-artist
+{
+    font-size: 12px;
+    color: rgba(255,255,255,0.8);
+}
+
+.player-2
+{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+
+.player-3
+{
+    width: 90%;
+}
+
+.time
+{
+    font-size: 80%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.icon-btn
+{
+    width: 40px;
+    height: 40px;
+    border: 0;
+    background: transparent;
+    color: #fff;
+    font-weight: 700;
+    padding: 8px;
+    border-radius: 8px;
+}
+
+.big-play
+{
+    width: 44px;
+    height: 44px;
+    border-radius: 999px;
+    border: 0;
+    background: rgba(255,255,255,0.06);
+    font-weight: 700;
+    color: #fff;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.progress-wrap
+{
+    width: 100%;
+}
+
+input[type="range"]
+{
+    width: 100%;
+    accent-color: #3a0000;
+}
+
+@media (min-width:700px)
+{
+    .app
+    {
+        padding: 18px;
+    }
+
+    .mini-player
+    {
+        left: 24px;
+        right: 24px;
+        border-radius: 20px;
+        padding: 12px;
+    }
+
+    .cover
+    {
+        width: 64px;
+        height: 64px;
+    }
+}
+
+.hidden
+{
+    display: none;
+}
+
+.menu-footer
+{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.menu-footer > svg
+{
+    width: 10%;
+}
+
+@keyframes rotate
+{
+    0%   {transform: rotate(0deg)}
+    100%   {transform: rotate(360deg)}
+}
+
+@keyframes prixClipFix
+{
+    0%   {clip-path:polygon(50% 50%,0 0,0 0,0 0,0 0,0 0)}
+    50%  {clip-path:polygon(50% 50%,0 0,100% 0,100% 0,100% 0,100% 0)}
+    75%, 100%  {clip-path:polygon(50% 50%,0 0,100% 0,100% 100%,100% 100%,100% 100%)}
+}
+
+#overlay
+{
+    position: fixed;
+    inset: 0;
+    backdrop-filter: blur(8px);
+    background: rgba(0,0,0,0.4);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+}
+
+#popup
+{
+    background: #111;
+    padding: 20px 30px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+    text-align: center;
+    max-width: 300px;
+    width: 50%;
+}
+
+#popup p
+{
+    margin-bottom: 20px;
+    font-size: 18px;
+}
+
+.buttons
+{
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+#popup button
+{
+    flex: 1;
+    padding: 10px 0;
+    border-radius: 8px;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+#popup-yes
+{
+    background: #28a745;
+    color: white;
+}
+
+#popup-no
+{
+    background: #dc3545;
+    color: white;
+}
+
+.download
+{
+    display: none;
+}

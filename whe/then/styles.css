@@ -1,0 +1,127 @@
+:root
+{
+    --size: min(90vmin, 720px);
+    --accent: #ff6b6b;
+    --bg: #0f172a;
+}
+
+html, body
+{
+    height: 100%;
+    margin: 0;
+    background: linear-gradient(180deg,#071028,#0f172a);
+    color: #fff;
+    font-family: Inter,system-ui,Arial,sans-serif;
+}
+
+.wrap
+{
+    min-height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    box-sizing: border-box;
+}
+
+.card
+{
+    width: var(--size);
+    max-width: calc(100% - 48px);
+    background: rgba(255,255,255,0.03);
+    border-radius: 16px;
+    padding: 18px;
+    box-shadow: 0 8px 30px rgba(2,6,23,0.6);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+}
+
+canvas
+{
+    border-radius: 50%;
+    display: block;
+}
+
+.pointer
+{
+    position: relative;
+    width: 0;
+    height: 0;
+    border-left: 16px solid transparent;
+    border-right: 16px solid transparent;
+    border-bottom: 26px solid var(--accent);
+    transform: translateY(-14px);
+    filter: drop-shadow(0 3px 6px rgba(0,0,0,0.6));
+}
+
+.controls
+{
+    display: flex;
+    gap: 12px;
+    margin-top: 6px;
+    align-items: center;
+}
+
+button
+{
+    background: var(--accent);
+    border: none;
+    color: #111;
+    padding: 10px 18px;
+    border-radius: 10px;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 6px 18px rgba(255,107,107,0.16);
+}
+
+button:disabled
+{
+    opacity: .5;
+    cursor: not-allowed;
+}
+
+.result
+{
+    margin-top: 6px;
+    padding: 8px 12px;
+    background: linear-gradient(90deg,rgba(255,255,255,0.03),rgba(255,255,255,0.02));
+    border-radius: 10px;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.result img
+{
+    width: 44px;
+    height: 44px;
+    object-fit: cover;
+    border-radius: 6px;
+}
+
+.result .txt
+{
+    font-weight: 600;
+    font-size: 130%;
+    text-align: center;
+}
+
+.footer
+{
+    font-size: 13px;
+    opacity: .7;
+    margin-top: 6px;
+}
+
+@media (max-width:520px)
+{
+    .pointer
+    {
+        border-left: 12px;
+        border-right: 12px;
+        border-bottom: 20px
+    }
+}

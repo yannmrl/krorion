@@ -1,0 +1,125 @@
+html, body
+{
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    background: #222;
+    touch-action: none;
+}
+
+#container
+{
+    position: relative;
+    width: 100%;
+    height: 85%;
+    overflow: hidden;
+    top: 0;
+}
+
+#img
+{
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform-origin: 0 0;
+    touch-action: none;
+    user-select: none;
+}
+
+.target
+{
+    display: none;
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    border: 5px solid red;
+    border-radius: 50%;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    animation: targetPulse 1.2s infinite ease-in-out;
+}
+
+@keyframes targetPulse
+{
+    0%
+    {
+        box-shadow: 0 0 6px rgba(255,0,0,0.6), 0 0 12px rgba(255,0,0,0.3);
+        transform: translate(-50%, -50%) scale(1);
+    }
+    50%
+    {
+        box-shadow: 0 0 20px rgba(255,0,0,0.9), 0 0 20px rgba(255,0,0,0.6);
+        transform: translate(-50%, -50%) scale(1.08);
+    }
+    100%
+    {
+        box-shadow: 0 0 6px rgba(255,0,0,0.6), 0 0 12px rgba(255,0,0,0.3);
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+.target::before
+{
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: -30px;
+    width: calc(100% + 60px);
+    height: 5px;
+    background: red;
+    transform: translateY(-50%);
+    clip-path: inset(0 40% 0 40%);
+}
+
+.target::after
+{
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: -30px;
+    width: 5px;
+    height: calc(100% + 60px);
+    background: red;
+    transform: translateX(-50%);
+    clip-path: inset(40% 0 40% 0);
+}
+
+#olist
+{
+    position: fixed;
+    bottom: 0;
+    height: 15%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    overflow-x: scroll;
+}
+
+#olist > div > img
+{
+    width: 80%;
+}
+
+#olist > div
+{
+    width: 25%;
+    display: flex;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.found
+{
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0.3;
+    background: lime;
+    width: 100%;
+    height: 100%;
+    border-radius: 15px;
+}

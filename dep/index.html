@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+        <link rel="stylesheet" type="text/css" href="styles.css" />
+        <script type="text/javascript" src="script.js" defer=""></script>
+    </head>
+    <body>
+        <div class="login-container">
+            <form class="login-form" onsubmit="deposit(); return false;">
+                <h2>Dépose tes krollars K</h2>
+
+                <label for="numero">Num&eacute;ro de s&eacute;rie</label>
+                <div id="serie">
+                    <input type="text" value="KR0" disabled>
+                    <input type="number" id="numero1" placeholder="XXX" onkeyup="kup(this, event, true)" onkeydown="kdown(event)" required>
+                    <input type="number" id="numero2" placeholder="XXX" onkeyup="kup(this, event,)" onkeydown="kdown(event)" required>
+                    <input type="number" id="numero3" placeholder="XXX" onkeyup="kup(this, event,)" onkeydown="kdown(event)" required>
+                </div>
+
+                <button type="submit" class="btn primary">Déposer</button>
+                <div class="btn primary" style="background: #5ba95b; text-align: center" onclick="verify()">Vérifier</div>
+            </form>
+
+            <div id="label"></div>
+        </div>  
+    </body>
+</html>

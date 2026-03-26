@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="fr">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <title>Hors ligne</title>
+        <style>
+            body
+            {
+                margin: 0;
+                background: #000;
+                color: #f33;
+                font-family: monospace;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                height: 100vh;
+                text-align: center;
+            }
+
+            h1
+            {
+                font-size: 1.4em;
+                margin-bottom: 0.5em;
+            }
+            
+            p
+            {
+                font-size: 1em;
+                color: #faa;
+            }
+        </style>
+    </head>
+    <body>
+        <h1 id="h">Nique les rats</h1>
+        <a id="status" href="https://paypal.com/paypalme/yannmorelle" style="font-size: 120%; color: #f44">paypal.me/yannmorelle</a>
+        <p id="status">FR76 1090 7001 2426 1199 7317 545<br>100K€ pour récupérer Krorion</p>
+        
+        <!--<script>
+
+            p = '';
+
+            const statusEl = document.getElementById('status');
+            const CHECK_URL = 'https://www.google.com';
+            const INTERVAL = 300;
+
+            function checkConnection()
+            {
+                fetch(CHECK_URL)
+                .then(() =>
+                {
+                    statusEl.textContent = 'Connexion rétablie. Rechargement...';
+                    document.getElementById('h').innerHTML = 'Tu es à nouveau en ligne';
+                    document.body.style.color = '#0f0';
+                    setTimeout(() => {window.location.href = "https://krorion.wysigot.com"}, 800);
+                })
+                .catch(() =>
+                {
+                    statusEl.textContent = `Vérification de la connexion${p}`;
+                    if (p.length < 3) p = `${p}.`; else p = '';
+                });
+            }
+
+            setInterval(checkConnection, INTERVAL);
+            checkConnection();
+        </script>-->
+    </body>
+</html>

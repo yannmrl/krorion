@@ -1,0 +1,314 @@
+body
+{
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #222;
+    color: #eee;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+@media (prefers-color-scheme: light)
+{
+    body
+    {
+        background-color: #fafafa;
+        color: #121212;
+    }
+}
+
+h1
+{
+    margin-top: 0;
+    text-align: center;
+}
+
+#compass-container
+{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 250px;
+    height: 250px;
+    margin: 20px 0;
+    position: relative;
+    border-radius: 50%;
+    box-shadow: 0 0 20px rgba(0,0,0,0.5);
+    background: radial-gradient(circle at center, #222 0%, #555 70%);
+    overflow: hidden;
+}
+
+#compass-outline
+{
+    z-index: 1;
+    position: fixed;
+    width: 250px;
+    height: 250px;
+}
+
+#compass-img
+{
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.2s linear;
+    pointer-events: none;
+}
+
+#compass-glass
+{
+    z-index: 3;
+    position: fixed;
+    width: 300px;
+    height: 300px;
+}
+
+#heading-text, #distance
+{
+    font-size: 32px;
+    font-weight: bold;
+    margin: 10px;
+}
+
+button
+{
+    padding: 12px 20px;
+    margin: 5px;
+    font-size: 18px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    background: #8b0000;
+    color: white;
+    transition: background 0.2s;
+}
+
+button:hover
+{
+    background: #0056cc;
+}
+
+button:active
+{
+    background: #003f99;
+}
+
+#error
+{
+    margin-top: 20px;
+    color: #ff5555;
+}
+
+#menu-container
+{
+    font-weight: bold;
+    color: #8b0000;
+    position: fixed;
+    top: 85%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    font-family: sans-serif;
+}
+
+.arrow
+{    
+    font-size: 40px;
+    cursor: pointer;
+    padding: 10px;
+    transition: .1s;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;   
+    user-select: none;
+}
+
+.arrow:active
+{
+    transform: scale(0.9);
+}
+
+#text-wrapper
+{
+    display: flex;
+    align-items: center;
+    width: 60vw;
+    height: 120px;
+    overflow: hidden;
+    position: relative;
+}
+
+#text-wrapper div
+{
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;   
+    user-select: none;
+}
+
+#text-current, #text-next
+{
+    position: absolute;
+    width: 100%;
+    font-size: 32px;
+    text-align: center;
+    transition: transform 0.35s ease;
+}
+
+.login-container
+{
+    position: fixed;
+    inset: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0,0,0,0.7);
+    z-index: 999;
+    padding: 10px;
+}
+
+.login-form
+{
+    background: linear-gradient(180deg, #0f1015, #14151c);
+    padding: 32px;
+    border-radius: 16px;
+    width: 100%;
+    max-width: 480px;
+    color: #e6eef6;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    box-shadow: 0 0 16px rgba(255,77,77,0.35);
+    position: relative;
+}
+
+.login-form h2
+{
+    font-size: 24px;
+    margin-bottom: 0;
+}
+
+.login-form h3
+{
+    color: #9aa0a6;
+    font-size: 12px;
+    margin: 0;
+}
+
+input[type="file"]::file-selector-button
+{
+    background: #14151c;
+    color: #ff4d4d;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: bold;
+    box-shadow: 0 0 8px rgba(255,77,77,0.4);
+    transition: all 0.2s ease;
+}
+
+.login-form input
+{
+    padding: 12px;
+    font-size: 15px;
+    border-radius: 8px;
+    border: 1px solid rgba(255,77,77,0.3);
+    background: rgba(0,0,0,0.3);
+    color: #e6eef6;
+}
+
+.login-form input:focus
+{
+    border-color: var(--accent2);
+    box-shadow: 0 0 6px var(--accent2);
+}
+
+.login-form .btn.primary
+{
+    padding: 12px;
+    font-size: 16px;
+    background: linear-gradient(90deg, var(--accent1), var(--accent2));
+    border: none;
+    border-radius: 8px;
+    color: #fff;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.login-form .btn.primary:hover
+{
+    box-shadow: 0 0 10px var(--accent2);
+}
+
+@media (max-width: 480px) 
+{
+    .login-form
+    {
+        max-width: 95%;
+        padding: 20px;
+        gap: 14px;
+    }
+    .login-form h2
+    {
+        font-size: 20px;
+    }
+    .login-form input, .login-form .btn.primary
+    {
+        font-size: 14px;
+        padding: 10px;
+    }
+}
+
+#newTrack
+{
+    position: fixed;
+    width: 15%;
+    left: 50%;
+    transform: translate(-50%);
+    top: 5%;
+    border-radius: 50%;
+    background: #f44;
+}
+
+#startDiv
+{
+    z-index: 10;
+    backdrop-filter: blur(5px);
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgb(0,0,0,0.5);
+}
+
+#startDiv label
+{
+    font-weight: bold;
+    font-size: 200%;
+    background: #111;
+    padding: 4%;
+    border-radius: 5px;
+    color: #f44;
+}
+
+#pInput
+{
+    padding: 3%;
+    margin: 3%;
+    background: #333;
+    border: 0;
+    border-radius: 5px;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+}

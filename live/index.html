@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+        <link rel="stylesheet" type="text/css" href="styles.css" />
+
+        <script src="https://cdn.jsdelivr.net/npm/livekit-client/dist/livekit-client.umd.min.js"></script>
+
+        <script type="text/javascript" src="script.js" defer=""></script>
+
+        <link rel="icon" type="image/png" href="../assets/kro/favicon-96x96.png" sizes="96x96" />
+        <!--<link rel="icon" type="image/svg+xml" href="assets/kro/favicon.svg" />-->
+        <link rel="shortcut icon" href="../assets/kro/favicon.ico" />
+        <link rel="apple-touch-icon" sizes="180x180" href="../assets/kro/apple-touch-icon.png" />
+        <link rel="apple-touch-icon" sizes="57x57" href="../assets/kro/apple-icon-57x57.png">
+        <link rel="apple-touch-icon" sizes="60x60" href="../assets/kro/apple-icon-60x60.png">
+        <link rel="apple-touch-icon" sizes="72x72" href="../assets/kro/apple-icon-72x72.png">
+        <link rel="apple-touch-icon" sizes="76x76" href="../assets/kro/apple-icon-76x76.png">
+        <link rel="apple-touch-icon" sizes="114x114" href="../assets/kro/apple-icon-114x114.png">
+        <link rel="apple-touch-icon" sizes="120x120" href="../assets/kro/apple-icon-120x120.png">
+        <link rel="apple-touch-icon" sizes="144x144" href="../assets/kro/apple-icon-144x144.png">
+        <link rel="apple-touch-icon" sizes="152x152" href="../assets/kro/apple-icon-152x152.png">
+        <link rel="apple-touch-icon" sizes="180x180" href="../assets/kro/apple-icon-180x180.png">
+        <link rel="icon" type="image/png" sizes="192x192"  href="../assets/kro/kro-192x192.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="../assets/kro/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="96x96" href="../assets/kro/favicon-96x96.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="../assets/kro/favicon-16x16.png">
+
+        <link rel="manifest" href="../manifest.json">
+        <meta name="msapplication-TileColor" content="#0b0c10">
+        <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+        <meta name="theme-color" content="#0b0c10">  
+
+        <meta name="mobile-web-app-capable" content="yes">
+        <!-- iOS support -->
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">        
+
+        <title>Krorion</title>
+    </head>
+    <body>
+        <div id="joinlive" onclick="load_live()">
+            <label>Rejoindre le live ?</label>
+            <img src="../assets/menu/twi-min.png">
+        </div>
+        <div id="label" style="z-index: 6"></div>
+        <div class="login-container" style="display: none; z-index: 10;">
+            <form class="login-form" onsubmit="log(); return false;">
+                <h2>Connexion</h2>
+                    
+                <label for="username">Identifiant Aurion</label>
+                <input type="text" id="username" placeholder="Identifiant Aurion" required autocomplete="new-user">
+
+                <label for="password">Mot de passe Krorion</label>
+                <input type="password" id="password" placeholder="Mot de passe Krorion" required autocomplete="new-password">
+
+                <button type="submit" class="btn primary">Se connecter</button>
+            </form>
+        </div>
+
+        <div id="live">
+            <video id="remoteVideo" autoplay playsinline></video>
+            <video id="camEmbed" autoplay playsinline></video>
+
+            <label id="liveTitle"></label>
+
+            <div id="people" onclick="displayViewers()">
+                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 24 24" width="24" height="24" fill="#ffffff">
+                    <path d="M.221 16.268a15.064 15.064 0 0 0 1.789 1.9C2.008 18.111 2 18.057 2 18a5.029 5.029 0 0 1 3.233-4.678 1 1 0 0 0 .175-1.784A2.968 2.968 0 0 1 4 9a2.988 2.988 0 0 1 5.022-2.2 5.951 5.951 0 0 1 2.022-.715 4.994 4.994 0 1 0-7.913 6.085 7.07 7.07 0 0 0-2.91 4.098zM23.779 16.268a7.07 7.07 0 0 0-2.91-4.1 4.994 4.994 0 1 0-7.913-6.086 5.949 5.949 0 0 1 2.022.715 2.993 2.993 0 1 1 3.614 4.74 1 1 0 0 0 .175 1.784A5.029 5.029 0 0 1 22 18c0 .057-.008.111-.01.167a15.065 15.065 0 0 0 1.789-1.899z"/>
+                    <path d="M18.954 20.284a7.051 7.051 0 0 0-3.085-5.114A4.956 4.956 0 0 0 17 12a5 5 0 1 0-8.869 3.17 7.051 7.051 0 0 0-3.085 5.114 14.923 14.923 0 0 0 1.968.849C7.012 21.088 7 21.046 7 21a5.031 5.031 0 0 1 3.233-4.678 1 1 0 0 0 .175-1.785A2.964 2.964 0 0 1 9 12a3 3 0 1 1 6 0 2.964 2.964 0 0 1-1.408 2.537 1 1 0 0 0 .175 1.785A5.031 5.031 0 0 1 17 21c0 .046-.012.088-.013.133a14.919 14.919 0 0 0 1.967-.849z"/>
+                </svg>
+                <label>0</label>
+            </div>
+
+            <div class="chat">
+                <div id="chatMessages">
+                </div>
+                <form class="chat-input" onsubmit="return false;">
+                    <input type="text" id="messageInput" placeholder="Écrire un message..." />
+                    <button type="submit" onclick="send()" id="sendBtn">
+                        <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none">
+                            <path 
+                                d="M20.7639 12H10.0556 M3 8.00003H5.5 M4 12H5.5 M4.5 16H5.5 M9.96153 12.4896L9.07002 15.4486C8.73252 16.5688 8.56376 17.1289 8.70734 17.4633C8.83199 17.7537 9.08656 17.9681 9.39391 18.0415C9.74792 18.1261 10.2711 17.8645 11.3175 17.3413L19.1378 13.4311C20.059 12.9705 20.5197 12.7402 20.6675 12.4285C20.7961 12.1573 20.7961 11.8427 20.6675 11.5715C20.5197 11.2598 20.059 11.0295 19.1378 10.5689L11.3068 6.65342C10.2633 6.13168 9.74156 5.87081 9.38789 5.95502C9.0808 6.02815 8.82627 6.24198 8.70128 6.53184C8.55731 6.86569 8.72427 7.42461 9.05819 8.54246L9.96261 11.5701C10.0137 11.7411 10.0392 11.8266 10.0493 11.9137C10.0583 11.991 10.0582 12.069 10.049 12.1463C10.0387 12.3188 10.013 12.4032 9.96153 12.4896Z"
+                                stroke="#ffffff"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                            />
+                        </svg>
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <div id="viewerList"></div>
+    </body>
+</html>

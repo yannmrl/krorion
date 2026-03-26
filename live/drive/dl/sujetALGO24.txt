@@ -1,0 +1,53 @@
+Initialisation
+
+Q1 -
+Créer une struct Roulement correspondant aux consignes exprimées ci-dessus.
+(identifiant de 5 caractères, diametre interieur decimal et diametre exterieur entier)
+Créer également un synonyme roulement.
+
+Q2 - Donner le prototype et implémenter une fonction creerRoulement qui retournera un roulement correctement complété en fonction des valeurs de ses id, dint et dext passées en arguments.
+
+Tableau statique
+
+Q3 - Donner le prototype et implémenter une fonction ajoutRoulement permettant d'ajouter un roulement dans un tableau de roulements passé en argument.
+
+Q4 - Donner le prototype et implémenter une fonction itérative chercheRoulement permettant de rechercher et de retourner un roulement d'id donné dans un tableau de roulements passé en argument.
+
+Q5 - Donner le prototype et implémentez une fonction récursive afficheTRoulements permettant d'afficher le contenu d'un tableau de roulements donné.
+
+Q6 - En réutilisant les fonctions définies précédemment, écrire une fonction principale main dans laquelle vous :
+- Déclarerez un tableau de roulement à billes de nom TRoulements, dimensionné à l'aide d'une constante nommée à la valeur 50.
+- Déclarerez une variable entière nbRoulements représentant le nombre de roulements courant dans TRoulements.
+- Créerez un roulement de votre choix
+- Ajouterez le roulement dans le tableau TRoulements.
+- Afficherez à l'écran le contenu de TRoulements.
+
+Liste chaînée
+
+Q7 - Proposer une struct MaillonRoulement permettant de représenter une liste chaînée de roulements.
+Déclarer un synonyme TypeMaillonRoulement de la struct MaillonRoulement.
+
+Q8 - Donner le prototype et implémenter une fonction ajoutRoulementListe permettant d'ajouter en tête de liste un roulement dans une liste chaînée de roulements passées en argument.
+
+Q9 - Donner le prototype et implémenter une fonction itérative chercheRoulementListe permettant de rechercher et de retourner un roulement d'id donné dans une liste chaînée de roulements passée en argument.
+
+Q10 - Donner le prototype et implémenter une procédure récursive afficheRoulementListe permettant d'afficher les id, dint et dext de chaque roulement d'une liste chaînée de roulements passée en argument.
+
+Q11 - En réutilisant les fonctions définies précédemment, complétez la fonction main précédente dans laquelle vous :
+- Déclarerez une liste chaînée vide de roulements LRoulements
+- Transfèrerez la totalité des roulements stockés dans le tableau de roulements TRoulements vers la liste LRoulements.
+- Afficherez à l'écran le contenu de la liste chaînée LRoulements.
+
+Accès direct
+
+Q12 - Donner le prototype puis implémenter une fonction ecrireTabRoulements permettant d'écrire dans un fichier à accès direct (binaire) dont le nom sera passé en argument,  le contenu d'un tableau de roulements.
+On veillera à écrire dans le fichier au préalable l'entier représentant le  nombre de roulements présents dans le tableau.
+
+Q13 - Donner le prototype puis implémenter une fonction lireRoulements permettant de lire un fichier à accès direct de roulements et de stocker les roulements dans un tableau défini dynamiquement dans la fontion.
+On veillera à passer en argument le nom du fichier source.
+Cette fonction retournera le nombre de roulements lus et le tableau dûment rempli.
+
+Q14 - En réutilisant les fonctions créées précédemment, écrire une fonction principale main dans laquelle vous :
+- * Lirez un fichier à accès direct de structures Roulement nommé roulements.bin. On suppose que le nombre d'enregistrement est inférieur à 20.
+- ** Définirez à 10 le paramètre dint du roulement d'id RRG12
+- *** Ecrirez dans un fichier à accès direct nommé roulementbis.bin le tableau de roulements préalablement généré lors de la lecture du fichier.

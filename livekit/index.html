@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Plateforme Streaming LiveKit</title>
+  <script src="https://cdn.jsdelivr.net/npm/livekit-client/dist/livekit-client.umd.min.js"></script>
+  <style>
+    body { font-family: Arial, sans-serif; text-align: center; padding: 20px; background: #f9f9f9; }
+    video { width: 80%; max-width: 600px; margin: 10px 0; border-radius: 8px; border: 2px solid #333; }
+    button { padding: 10px 20px; margin: 5px; font-size: 16px; cursor: pointer; }
+  </style>
+</head>
+<body onload="load()">
+
+<h1>Krorion Live 2.0 AHH</h1>
+
+<h3>Vidéo locale (Streamer)</h3>
+<video id="localVideo" autoplay muted playsinline></video>
+
+<h3>Vidéo distante (Spectateur)</h3>
+<video id="remoteVideo" autoplay playsinline></video>
+
+<div>
+  <button id="startStream">Démarrer le Stream</button>
+  <button id="joinRoom">Rejoindre la Room</button>
+</div>
+
+<script>
+  async function getToken(isStreamer = false)
+  {
+      const identity = isStreamer ? "streamer" : "viewer";
+    const role = isStreamer ? "true" : "false";
+
+    const response = await fetch(`https://echo.wysigot.com/token?identity=${identity}&uuid=727ff9fa-6131-47bc-9924-d720bc8bd4dc`);
+    const data = await response.json();
+
+    return data.token;
+  }
+
+  const LIVEKIT_URL = "wss://krorion-live-a5oy7539.livekit.cloud"; // Remplace par ton serveur LiveKit
+  let TOKEN;
+
+  const localVideoEl = document.getElementById('localVideo');
+  const remoteVideoEl = document.getElementById('remoteVideo');
+  let room; // La room LiveKit partagée
+
+  // 1️⃣ Démarrer le stream local (Streamer)
+  document.getElementById('startStream').onclick = async () => {
+    try {
+      // Récupère caméra et micro
+      const stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
+      localVideoEl.srcObject = stream;
+
+      // Crée et connecte la room
+      room = new LivekitClient.Room();
+      await room.connect(LIVEKIT_URL, TOKEN, { autoSubscribe: true });
+
+      // Crée la piste vidéo locale et publie
+      const videoTrack = new LivekitClient.LocalVideoTrack(stream.getVideoTracks()[0]);
+      const audioTrack = new LivekitClient.LocalAudioTrack(stream.getAudioTracks()[0]);
+      room.localParticipant.publishTrack(videoTrack);
+      room.localParticipant.publishTrack(audioTrack);
+
+      console.log("Stream publié !");
+    } catch (err) {
+      console.error("Erreur démarrage du stream :", err);
+    }
+  };
+
+  // 2️⃣ Rejoindre la room comme spectateur
+document.getElementById('joinRoom').onclick = async () => {
+  try {
+    const response = await fetch("https://echo.wysigot.com/token?identity=viewer&uuid=727ff9fa-6131-47bc-9924-d720bc8bd4dc");
+    const data = await response.json();
+    const TOKEN = data.token;
+
+    const room = new LivekitClient.Room();
+    await room.connect(LIVEKIT_URL, TOKEN, { autoSubscribe: true });
+
+    console.log(room);
+
+    // Attacher les vidéos déjà publiées par les autres participants
+    participant = room.remoteParticipants.get("streamer")
+    Array.from(participant.trackPublications).forEach(pub => pub[1].track.attach(remoteVideoEl));
+
+    // Écouter les nouvelles pistes publiées
+    room.on("trackPublished", (publication, participant) => publication.on("subscribed", (track) => track.attach(remoteVideoEl)));
+
+    console.log("Rejoint la room !");
+  } catch (err) {
+    console.error("Erreur rejoindre la room :", err);
+  }
+};
+
+  async function load()
+  {
+    TOKEN = await getToken(true); // Remplace par ton token généré côté serveur
+    console.log(`Token généré : ${TOKEN}`);
+  }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,164 @@
+:root
+{
+    --accent1: #ff1a1a;
+    --accent2: #ff4d4d;
+}
+
+body, html
+{
+    margin: 0;
+    padding: 0;
+    background: #0b0c10;
+    font-family: Arial, sans-serif;
+    color: #e6eef6;
+}
+
+.container
+{
+    max-width: 900px;
+    padding: 20px;
+}
+
+h1
+{
+    text-align: center;
+    color: var(--accent2);
+    text-shadow: 0 0 10px rgba(255,77,77,0.6);
+    margin-bottom: 15px;
+}
+
+.user-list
+{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.user
+{
+    background: #14151c;
+    padding: 20px;
+    border-radius: 16px;
+    box-shadow: 0 0 12px rgba(255,77,77,0.35);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.user .rank
+{
+    font-size: 22px;
+    font-weight: bold;
+    color: var(--accent2);
+    width: 50px;
+    text-align: center;
+}
+
+.user .info
+{
+    flex: 1;
+    margin-left: 15px;
+}
+
+.user .info h2
+{
+    margin: 0 0 5px;
+    font-size: 20px;
+    color: var(--accent2);
+}
+
+.user .info p
+{
+    margin: 0;
+    font-size: 14px;
+    color: #aaa;
+}
+
+.user .value
+{
+    text-align: right;
+    min-width: 80px;
+}
+
+.user .value span
+{
+    display: block;
+}
+
+.value-up
+{
+    color: #4dff88;
+}
+
+.value-down
+{
+    color: #ff4d4d;
+}
+
+@media (max-width: 600px)
+{
+    .user
+    {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 15px;
+    }
+
+    .user .rank
+    {
+        font-size: 18px;
+        width: auto;
+        margin-bottom: 5px;
+    }
+
+    .user .info
+    {
+        margin: 0 0 8px 0;
+    }
+
+    .user .info h2
+    {
+        font-size: 18px;
+    }
+
+    .user .info p
+    {
+        font-size: 13px;
+    }
+
+    .user .value
+    {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        font-size: 14px;
+    }
+
+    .user .value span
+    {
+        font-size: 15px;
+    }
+}
+
+#buttons
+{
+    display: flex;
+    justify-content: center;
+    margin: 10%;
+    flex-wrap: wrap;
+}
+
+#buttons > img
+{
+    width: 30%;
+    object-fit: contain;
+}
+
+.selected
+{
+    border-radius: 10px;
+    background: linear-gradient(135deg, #ff3b3b, #8b0000);
+    box-shadow:
+        0 0 20px rgba(255, 0, 0, 0.4),
+        0 10px 30px rgba(139, 0, 0, 0.6);
+}

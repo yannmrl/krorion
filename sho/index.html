@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="fr">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+        <link rel="stylesheet" type="text/css" href="styles.css" />
+        <script type="text/javascript" src="script.js" defer=""></script>
+    </head>
+    <body>     
+        
+        <div class="container">
+            <header>
+                <div class="logo">
+                    <div>
+                        <div class="title">BOUTIQUE</div>
+                        <div class="subtitle">Dépense tes krollars</div>
+                    </div>
+                </div>
+
+                <label style="font-weight: bold;" id="solde">K---</label>
+
+                <div class="controls">
+                    <button class="btn primary" id="openCart" style="padding: 10px;">Dépôt</button>
+                </div>
+            </header>
+
+            <div id="label"></div>       
+
+            <main>
+                <section class="products" aria-labelledby="catalog">
+                    <h2 id="catalog" style="margin:0 0 12px 0">Catalogue</h2>
+                    <div class="grid" id="productsGrid" role="list">
+                        <!-- cartes produits insérées par JS -->
+                    </div>
+                </section>
+
+                <aside>
+                    <div class="panel">
+                        <h3 style="margin-top:0">Panier</h3>
+                        <p style="color:var(--muted);font-size:13px">Contenu du panier</p>
+
+                        <div style="margin-top:12px">
+                            <div style="display:flex;gap:8px;align-items:center">
+                                <div style="width:12px;height:12px;border-radius:3px;background:var(--accent)"></div>
+                                <div style="font-weight:700">Livraison discrète</div>
+                            </div>
+
+                            <div style="display:flex;gap:8px;align-items:center;margin-top:8px">
+                                <div style="width:12px;height:12px;border-radius:3px;background:var(--accent2)"></div>
+                                <div style="font-weight:700">Paiement uniquement en krollars K</div>
+                            </div>
+                        </div>
+
+                        <div style="margin-top:14px">
+                            <div style="font-weight:700">Aper&ccedil;u du panier</div>
+                            <div id="miniCart" style="margin-top:8px;color:var(--muted);min-height:60px">Aucun article</div>
+                            <div class="cart-total" style="margin-top:10px">
+                                <div>Total</div>
+                                <div id="miniTotal">K0</div>
+                            </div>
+                            <div style="margin-top:12px;display:flex;gap:8px;flex-direction:column;">
+                                <button class="btn" id="viewCart">Voir le panier</button>
+                                <button class="btn primary" id="checkout">Commander</button>
+                            </div>
+                        </div>
+                    </div>
+                </aside>
+            </main>
+        </div>
+
+        <!-- modal panier -->
+        <div class="modal" id="cartModal" role="dialog" aria-modal="true">
+            <div class="box">
+                <h3>Votre panier</h3>
+                <div id="cartList" style="margin-top:10px"></div>
+                <div class="cart-total" style="margin-top:12px">
+                    <div>Sous-total</div>
+                    <div id="cartSubtotal">K0</div>
+                </div>
+                <div style="display:flex;gap:8px;margin-top:12px;justify-content:flex-end">
+                    <button class="btn" id="closeCart">Fermer</button>
+                    <button class="btn primary" id="finalCheckout">Procéder au paiement</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Carte détail produit -->
+        <div class="detail-modal" id="detailModal">
+            <div class="detail-card">
+                <span class="close-detail" onclick="closeDetail()">&times;</span>
+                <div class="detail-thumb"></div>
+                <h2 id="detailName"></h2>
+                <p id="detailDesc"></p>
+                <p class="detail-price" id="detailPrice"></p>
+                <button class="btn primary" onclick="addToCart(currentProduct.id)">Ajouter au panier</button>
+            </div>
+        </div>
+    </body>
+</html>

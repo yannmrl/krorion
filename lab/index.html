@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+        <link rel="stylesheet" type="text/css" href="styles.css" />
+        <script type="text/javascript" src="script.js" defer=""></script>        
+    </head>
+    <body>
+        
+        <div id="label"></div>       
+        
+        <div id="game-container">
+            <div id="maze"></div>
+            <div id="fog"></div>
+            <div id="controls">
+                <div id="up" class="arrow" onclick="move('up')">&#9650;</div>
+                <div id="left" class="arrow" onclick="move('left')">&#9664;</div>
+                <div id="down" class="arrow" onclick="move('down')">&#9660;</div>
+                <div id="right" class="arrow" onclick="move('right')">&#9654;</div>
+            </div>
+        </div>
+
+        
+        <div id="gameOverPopup" class="popup">
+            <div class="popup-content">
+                <h2>Game Over</h2>
+                <p><strong>Pièces : </strong> <span id="krollars">0</span></p>
+                <p><span>Reviens demain pour en gagner plus !</span></p>
+                <button onclick="closePopup()">Fermer</button>
+            </div>
+        </div>
+
+    </body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+        <link rel="stylesheet" type="text/css" href="styles.css" />
+        <script type="text/javascript" src="script.js" defer=""></script>        
+    </head>
+    <body>
+
+    <div id="startDiv" style="display: flex; flex-direction: column;">
+        <input type="number" placeholder="password" id="pInput">
+        <label onclick="start()">Démarrer la boussole</label>
+    </div>
+
+    <div id="compass-container">
+        <img id="compass-outline" src="assets/fond.png">
+        <img id="compass-img" src="assets/aiguille1.png">
+        <img id="compass-glass" src="assets/verre.png">
+    </div>
+
+    <div id="heading-text">0°</div>
+    <div id="distance" style="display: block">-- m</div>
+
+    <div id="menu-container">
+        Aucune Cible
+    </div>
+
+    <div id="error"></div>
+
+    <div class="login-container" style="display: none;">
+        <form class="login-form" onsubmit="startSending(); return false;">
+            <h2>Commencer le tracking</h2>
+            <h3>Garde ton tel allumé et ne quitte pas cette page afin d'avoir un raffraîchissement régulier de ta position</h3>
+
+            <input type="text" name="desc" id="descInput" placeholder="Description (courte)" required>
+            <span>Suivre le tracking ?<input type="checkbox" name="tcheck" id="trackingInput"></span>
+            <span>Indiquer la distance ?<input type="checkbox" name="dcheck" id="distanceInput"></span>
+
+            <h3>Pour un tracking non suivi, tu peux entrer les coordonnées pour plus de précision</h3>
+            <input type="text" name="pos" id="posInput" placeholder="48.9201, 2.3326">
+            <button type="submit" onclick="startSending()" class="btn primary">Commencer</button>
+        </form>
+    </div>    
+
+    <svg style="display: none" id="newTrack" onclick="wantToStartSending()" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" fill="#8b0000">
+        <path d="M16 2C8.268 2 2 8.268 2 16s6.268 14 14 14 14-6.268 14-14S23.732 2 16 2zm1 13h5a1 1 0 1 1 0 2h-5v5a1 1 0 1 1-2 0v-5H9a1 1 0 1 1 0-2h6V9a1 1 0 1 1 2 0v6z"/>
+    </svg>
+
+    </body>
+</html>

@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="fr">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+        <link rel="stylesheet" type="text/css" href="styles.css" />
+        <script type="text/javascript" src="script.js" defer=""></script>
+    </head>
+    <body>     
+        
+        <div class="container">
+            <header>
+                <div class="logo">
+                    <div>
+                        <div class="title">RECOMPENSES</div>
+                        <div class="subtitle">Réclame tes consos</div>
+                    </div>
+                </div>
+            </header>
+
+            <div id="label"></div>       
+
+            <main>
+                <section class="products" aria-labelledby="catalog">
+                    <h2 id="catalog" style="margin:0 0 12px 0">Consos</h2>
+                    <div class="grid" id="productsGrid" role="list">
+                        <!-- cartes produits insérées par JS -->
+                    </div>
+                </section>
+            </main>
+        </div>
+        <div class="detail-modal" id="detailModal">
+            <div class="detail-card">
+                <span class="close-detail" onclick="closeDetail()">&times;</span>
+                <div class="detail-thumb"></div>
+                <div id="conso-input"><h2 id="detailName"></h2><input onkeyup="priceInput(this)" type="text" id="priceInput" placeholder="2.50" inputmode="decimal" style="display: none"></div>
+                <p id="detailDesc" style="color: red"></p>
+                <button class="btn primary" onclick="confirm()">Confirmation BaAaRman</button>
+            </div>
+        </div>
+    </body>
+</html>

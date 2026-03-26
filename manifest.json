@@ -1,0 +1,17 @@
+{
+  "name": "Krorion",
+  "short_name": "Krorion",
+  "version": "4.3.0",
+  "start_url": "index.html",
+  "display": "standalone",
+  "background_color": "#0b0c10",
+  "theme_color": "#0b0c10",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "assets/kro/kro-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

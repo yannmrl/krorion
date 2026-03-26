@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+        <link rel="stylesheet" type="text/css" href="styles.css" />
+        <script type="text/javascript" src="script.js" defer=""></script>
+    </head>
+    <body>
+
+        <div id="label"></div>
+
+        <div class="container">
+            <h1>Missions</h1>
+            <div id="missionsList"></div>
+        </div>
+
+        <div class="login-container" style="display: none;">
+            <form class="login-form" onsubmit="send(); return false;">
+                <h2>Prouve la complétion de la mission</h2>
+                <h3>Screen, photo ou vidéo, selon la mission</h3>
+                <h3>Des bonus peuvent être appliqués selon la perf</h3>
+                <h3>Si plusieurs personnes ont participé à la mission, chacune doit compléter la mission sur son compte</h3>
+                <h3>! Chaque mission n'est réalisable qu'une seule fois par personne !</h3>
+                <!--<span style="display: flex; justify-content: space-between;">
+                    <h3>Décoche cette case si tu ne souhaites pas être reposté</h3>
+                    <input type="checkbox" name="repost" id="repost" checked style="width: 40px; accent-color: #f44">
+                </span>
+ 
+                <input type="file" name="fileInput" id="fileInput" accept="image/*,video/*" required>
+
+                <button type="submit" class="btn primary">Envoyer</button>-->
+                <h2 style="text-align: center;">Envoie-nous la preuve sur insta depuis ta galerie : <a style="color: #053a81" href="https://instagram.com/lafugitliste">@lafugitliste</a> en précisant si tu souhaites ne pas être reposté</h2>
+            </form>
+        </div>
+        
+        <div class="loader"></div>
+    </body>
+</html>
